@@ -10,6 +10,7 @@ package chnu.edu.websecurity26.controller;
 import chnu.edu.websecurity26.model.Book;
 import chnu.edu.websecurity26.service.BookService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -46,5 +47,27 @@ public class BookController {
     public void deleteItem(@PathVariable String id){
         bookService.deleteItem(id);
     }
+
+
+//    roles
+    @PreAuthorize("hasRole('ADMIN')")
+    @GetMapping("hello/admin")
+    public String helloAdmin() {
+        return "Hello Admin!";
+    }
+
+    @GetMapping("hello/unknown")
+    public String helloUnknown() {
+        return "Hello Unknown!";
+    }
+
+    @PreAuthorize("hasRole('USER')")
+    @GetMapping("/hello/user")
+    public String hello() { return "Hello! User"; }
+
+
+    @PreAuthorize("hasAnyRole('ADMIN', 'SUPERADMIN')")
+    @GetMapping("/hello/man")
+    public String helloMan() { return "Hello, man!"; }
 
 }
