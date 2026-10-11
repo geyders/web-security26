@@ -48,9 +48,9 @@ public class SecurityConfig {
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests( req ->
                         req.requestMatchers("/index.html").permitAll()
-                               .requestMatchers("/api/v1/books/hello/admin").hasRole("ADMIN")
-                               .requestMatchers("/api/v1/books/hello/user").hasRole("USER")
-                               .requestMatchers("/api/v1/books/hello/man").hasAnyRole("USER", "ADMIN")
+//                               .requestMatchers("/api/v1/books/hello/admin").hasRole("ADMIN")
+//                               .requestMatchers("/api/v1/books/hello/user").hasRole("USER")
+//                               .requestMatchers("/api/v1/books/hello/man").hasAnyRole("USER", "ADMIN")
                                 .anyRequest().authenticated())
                 .httpBasic(Customizer.withDefaults());
 
