@@ -1,0 +1,103 @@
+### 1.1. USER доступ до свого ендпоінту (Очікується 200 OK)
+GET http://localhost:8080/api/v1/books/hello/user
+Authorization: Basic user user
+Accept: application/json
+
+###
+
+### 1.2. USER доступ до адмінського ендпоінту (Очікується 403 Forbidden)
+GET http://localhost:8080/api/v1/books/hello/admin
+Authorization: Basic user user
+Accept: application/json
+
+###
+
+### 1.3. USER доступ до /man (Очікується 403 Forbidden - заблоковано @PreAuthorize)
+GET http://localhost:8080/api/v1/books/hello/man
+Authorization: Basic user user
+Accept: application/json
+
+###
+
+### 1.4. USER доступ до загального авторизованого ендпоінту (Очікується 200 OK)
+GET http://localhost:8080/api/v1/books/hello/unknown
+Authorization: Basic user user
+Accept: application/json
+
+###
+
+### 2.1. ADMIN доступ до свого ендпоінту (Очікується 200 OK)
+GET http://localhost:8080/api/v1/books/hello/admin
+Authorization: Basic admin admin
+Accept: application/json
+
+###
+
+### 2.2. ADMIN доступ до /man (Очікується 200 OK)
+GET http://localhost:8080/api/v1/books/hello/man
+Authorization: Basic admin admin
+Accept: application/json
+
+###
+
+### 2.3. ADMIN доступ до user-ендпоінту (Очікується 403 Forbidden)
+GET http://localhost:8080/api/v1/books/hello/user
+Authorization: Basic admin admin
+Accept: application/json
+
+###
+
+### 2.4. ADMIN доступ до загального списку книг (Очікується 200 OK)
+GET http://localhost:8080/api/v1/books
+Authorization: Basic admin admin
+Accept: application/json
+
+###
+
+### 3.1. SUPERADMIN доступ до /man (Очікується 200 OK)
+GET http://localhost:8080/api/v1/books/hello/man
+Authorization: Basic superadmin superadmin
+Accept: application/json
+
+###
+
+### 3.2. SUPERADMIN доступ до адмінського ендпоінту (Очікується 403 Forbidden)
+GET http://localhost:8080/api/v1/books/hello/admin
+Authorization: Basic superadmin superadmin
+Accept: application/json
+
+###
+
+### 3.3. SUPERADMIN доступ до user-ендпоінту (Очікується 403 Forbidden)
+GET http://localhost:8080/api/v1/books/hello/user
+Authorization: Basic superadmin superadmin
+Accept: application/json
+
+###
+
+### 4.1. Запит без авторизації (Очікується 401 Unauthorized)
+GET http://localhost:8080/api/v1/books/hello/user
+Accept: application/json
+
+###
+
+### 4.2. Запит з невірним паролем (Очікується 401 Unauthorized)
+GET http://localhost:8080/api/v1/books/hello/admin
+Authorization: Basic admin wrongpass
+Accept: application/json
+
+###
+
+### 4.3. Створення книги користувачем USER (Очікується 200/201 OK)
+POST http://localhost:8080/api/v1/books
+Authorization: Basic user user
+Content-Type: application/json
+
+{
+  "id": "100",
+  "title": "Role Testing Book",
+  "author": "Security Tester",
+  "year": 2026
+}
+
+###
