@@ -1,12 +1,14 @@
 package chnu.edu.websecurity26.config;
 
+
 /*
- @author Lenovo
- @project web-security26
- @class AuditorAwareImpl
- @version 1.0.0
- @since 10/10/2026 - 21.09
+  @author   george
+  @project   web-security26
+  @class  AuditAwareImpl
+  @version  1.0.0
+  @since 22/09/2026 - 12.49
 */
+
 
 import org.springframework.data.domain.AuditorAware;
 

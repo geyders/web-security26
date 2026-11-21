@@ -1,11 +1,12 @@
 package chnu.edu.websecurity26.auth;
 
+
 /*
- @author Lenovo
- @project web-security26
- @class AuthenticationController
- @version 1.0.0
- @since 11/7/2026 - 14.20
+  @author   george
+  @project   security25
+  @class  AuthenticationController
+  @version  1.0.0
+  @since 15.04.25 - 20.35
 */
 
 import lombok.RequiredArgsConstructor;
@@ -22,7 +23,7 @@ public class AuthenticationController {
 
     private final AuthenticationService authenticationService;
 
-    @PostMapping("'/authenticate")
+    @PostMapping("/authenticate")
     public ResponseEntity<AuthenticationResponse>
     authenticate(@RequestBody AuthenticationRequest request) {
         return ResponseEntity.ok(authenticationService.authenticate(request)) ;

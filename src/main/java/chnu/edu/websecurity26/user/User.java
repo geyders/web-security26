@@ -1,11 +1,12 @@
 package chnu.edu.websecurity26.user;
 
+
 /*
- @author Lenovo
- @project web-security26
- @class User
- @version 1.0.0
- @since 11/7/2026 - 14.22
+  @author   george
+  @project   security25
+  @class  User
+  @version  1.0.0
+  @since 15.04.25 - 20.58
 */
 
 import lombok.AllArgsConstructor;
@@ -88,4 +89,9 @@ public class User implements UserDetails, Principal {
     public boolean isEnabled() {
         return enabled;
     }
+
+    public String getFullName(){
+        return firstName + " " + lastName;
+    }
+
 }
