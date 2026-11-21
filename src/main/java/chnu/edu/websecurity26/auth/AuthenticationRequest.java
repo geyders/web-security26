@@ -1,11 +1,12 @@
 package chnu.edu.websecurity26.auth;
 
+
 /*
- @author Lenovo
- @project web-security26
- @class AuthenticationRequest
- @version 1.0.0
- @since 11/7/2026 - 14.20
+  @author   george
+  @project   security25
+  @class  AuthenticationRequest
+  @version  1.0.0
+  @since 15.04.25 - 20.27
 */
 
 import lombok.Data;
@@ -13,7 +14,7 @@ import lombok.NonNull;
 @Data
 public class AuthenticationRequest {
     @NonNull
-    private String login;
+    private String email;
     @NonNull
     private String password;
 }

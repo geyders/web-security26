@@ -1,5 +1,6 @@
 package chnu.edu.websecurity26.config;
 
+import chnu.edu.websecurity26.jwt.JwtAuthenticationFilter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.aop.Advisor;
 import org.springframework.beans.factory.config.BeanDefinition;
@@ -12,25 +13,15 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
-/*
- @author Lenovo
- @project web-security26
- @class SecurityConfig
- @version 1.0.0
- @since 22/09/2026 - 12.16
-*/
 @Configuration
 @EnableWebSecurity
 @RequiredArgsConstructor
 public class SecurityConfig {
 
     private final AuthenticationProvider authenticationProvider;
-
-//    @Bean
-//    public static PasswordEncoder passwordEncoder() {
-//        return new BCryptPasswordEncoder();
-//    }
+    private final JwtAuthenticationFilter jwtAuthenticationFilter;
 
     @Bean
     @Role(BeanDefinition.ROLE_INFRASTRUCTURE)
@@ -46,37 +37,11 @@ public class SecurityConfig {
                         req.requestMatchers("/index.html", "/auth/**").permitAll()
                                 .anyRequest()
                                 .authenticated())
-                .sessionManagement(session
-                        -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-                .authenticationProvider(authenticationProvider);
-        // .addFilterBefore()  // TODO
+                .sessionManagement(session ->
+                        session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+                .authenticationProvider(authenticationProvider)
+                .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
 
         return http.build();
     }
-
-//    @Bean
-//    public UserDetailsService userDetailsService() {
-//
-//        UserDetails admin = User.builder()
-//                .username("admin")
-//                .password(passwordEncoder().encode("admin"))
-//                .roles("ADMIN")
-//                .build();
-//
-//        UserDetails user = User.builder()
-//                .username("user")
-//                .password(passwordEncoder().encode("user"))
-//                .roles("USER")
-//                .build();
-//
-//        UserDetails superadmin = User.builder()
-//                .username("superadmin")
-//                .password(passwordEncoder().encode("superadmin"))
-//                .roles("SUPERADMIN")
-//                .build();
-//
-//
-//        return new InMemoryUserDetailsManager(admin, user, superadmin);
-//    }
-
 }

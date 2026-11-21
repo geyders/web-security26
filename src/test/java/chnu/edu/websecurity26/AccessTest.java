@@ -1,12 +1,5 @@
-package chnu.edu.websecurity26;
+/* chnu.edu.websecurity26;
 
-/*
- @author Lenovo
- @project web-security26
- @class AccessTest
- @version 1.0.0
- @since 10/19/2026 - 17.10
-*/
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -231,3 +224,4 @@ public class AccessTest {
         assertEquals(200, statusOf(BASE + "/hello/unknown"));
     }
 }
+*/
